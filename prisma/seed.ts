@@ -4,8 +4,8 @@ const prisma = new PrismaClient();
 
 async function main() {
   const data: Cats[] = [];
-  for (let i = 0; i < 50; i++) {
-    data.push({ id: i + 1, name: faker.animal.cat(), color: faker.color.human(), weight: faker.random.numeric(), eyes_color: faker.color.human() });
+  for (let i = 1; i <= 50; i++) {
+    data.push({ id: i, name: faker.animal.cat(), color: faker.color.human(), weight: faker.random.numeric(), eyes_color: faker.color.human() });
   }
 
   const cats = await prisma.cats.createMany({ data });

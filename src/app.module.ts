@@ -1,16 +1,44 @@
 import { MiddlewareConsumer, Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { MailerModule } from '@nestjs-modules/mailer';
+import { EjsAdapter } from '@nestjs-modules/mailer/dist/adapters/ejs.adapter';
 import { configuration } from './configs/configuration';
-import { LoggerMiddleware } from './middlewares/logger.middleware';
+import { CheckAuthenticatedMiddleware } from './middlewares/check-authenticated/check-authenticated.middleware';
 import { CatsModule } from './routes/cats/cats.module';
 
 @Module({
-  imports: [ConfigModule.forRoot({ load: [configuration], ignoreEnvFile: true, isGlobal: true }), CatsModule],
+  imports: [
+    ConfigModule.forRoot({ load: [configuration], ignoreEnvFile: true, isGlobal: true }),
+    MailerModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) => ({
+        transport: {
+          host: configService.get('mailerSmtpHost'),
+          port: configService.get('mailerSmtpPort'),
+          secure: false,
+          tls: { rejectUnauthorized: false },
+        },
+        defaults: {
+          from: configService.get('mailerDefaultFrom'),
+        },
+        template: {
+          dir: __dirname + '/../../templates/mails',
+          adapter: new EjsAdapter(),
+          options: {
+            strict: false,
+          },
+        },
+      }),
+    }),
+    CatsModule,
+  ],
   controllers: [],
   providers: [],
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(LoggerMiddleware).forRoutes('*');
+    // Uncomment to enable middleware
+    // consumer.apply(CheckAuthenticatedMiddleware).forRoutes('*');
   }
 }

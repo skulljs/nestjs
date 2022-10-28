@@ -1,5 +1,6 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Res } from '@nestjs/common';
 import { ApiTags, ApiOkResponse } from '@nestjs/swagger';
+import { Response } from 'express';
 import { CatsService } from './cats.service';
 import { CreateCatDto } from './dto/create-cat.dto';
 import { UpdateCatDto } from './dto/update-cat.dto';
@@ -38,5 +39,34 @@ export class CatsController {
   @ApiOkResponse({ type: Cat })
   remove(@Param('id') id: string) {
     return this.catsService.remove(+id);
+  }
+
+  @Post('sendMail')
+  sendMail() {
+    return this.catsService.sendMail();
+  }
+
+  @Get('pdfClass/:id')
+  async printPDFFromClass(@Param('id') id: string, @Res() res: Response) {
+    const buffer = await this.catsService.printPDFFromClass(+id);
+    res.set({
+      'Content-Type': 'application/pdf',
+      'Content-Disposition': 'attachment; filename=example.pdf',
+      'Content-Length': buffer.length,
+    });
+
+    res.end(buffer);
+  }
+
+  @Get('pdfEJS/:id')
+  async printPDFFromEJS(@Param('id') id: string, @Res() res: Response) {
+    const buffer = await this.catsService.printPDFFromEJS(+id);
+    res.set({
+      'Content-Type': 'application/pdf',
+      'Content-Disposition': 'attachment; filename=example.pdf',
+      'Content-Length': buffer.length,
+    });
+
+    res.end(buffer);
   }
 }
