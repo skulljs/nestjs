@@ -8,6 +8,7 @@ import { CatsModule } from './routes/cats/cats.module';
 
 @Module({
   imports: [
+    CatsModule,
     ConfigModule.forRoot({ load: [configuration], ignoreEnvFile: true, isGlobal: true }),
     MailerModule.forRootAsync({
       imports: [ConfigModule],
@@ -31,7 +32,6 @@ import { CatsModule } from './routes/cats/cats.module';
         },
       }),
     }),
-    CatsModule,
   ],
   controllers: [],
   providers: [],
