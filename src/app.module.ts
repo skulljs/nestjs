@@ -2,8 +2,8 @@ import { MiddlewareConsumer, Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MailerModule } from '@nestjs-modules/mailer';
 import { EjsAdapter } from '@nestjs-modules/mailer/dist/adapters/ejs.adapter';
-import { configuration } from './configs/configuration';
 import { CheckAuthenticatedMiddleware } from './middlewares/check-authenticated/check-authenticated.middleware';
+import { configuration } from './configs/configuration';
 import { CatsModule } from './routes/cats/cats.module';
 
 @Module({
