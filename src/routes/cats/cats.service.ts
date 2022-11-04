@@ -15,7 +15,7 @@ export class CatsService {
     return prisma.cats.create({ data: createCatDto });
   }
 
-  async findAll() {
+  findAll() {
     return prisma.cats.findMany();
   }
 
