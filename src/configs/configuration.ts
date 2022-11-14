@@ -14,7 +14,7 @@ export const configuration = () => ({
   corsOrigins: ['http://localhost:4200'], // allowed origins | Ex: angular
 
   // OpenAPI
-  openAPIPath: 'api-docs', // path of the open api docs
+  openAPIPath: 'api', // path of the open api docs
   openAPITitle: 'skulljs nestjs example', // title of the open api docs
   openAPIDescription: 'nestjs component for skulljs', // description of the open api docs
   openAPIVersion: '1.0', // version of the open api docs
