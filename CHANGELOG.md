@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.9.2 - Exclude prisma from TS compile
+
+- Exclude prisma from TS compile
+
 ## v0.9.1 - OpenAPI Root
 
 - Change the root of OpenAPI from 'api-docs' to 'api'
