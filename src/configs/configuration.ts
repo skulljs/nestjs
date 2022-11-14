@@ -8,7 +8,7 @@ export const configuration = () => ({
   accessLoggerFileInterval: '1d', // the max time before it rotates
 
   // Helmet
-  helmetContentSecurityPolicy: true, // set false if CSP errors
+  helmetContentSecurityPolicy: false, // false for sk build
 
   // Cors
   corsOrigins: ['http://localhost:4200'], // allowed origins | Ex: angular
