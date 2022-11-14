@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.9.3 - Add @nestjs/serve-static for build
+
+- Add @nestjs/serve-static for build
+
 ## v0.9.2 - Exclude prisma from TS compile
 
 - Exclude prisma from TS compile
