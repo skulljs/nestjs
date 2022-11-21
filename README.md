@@ -1,4 +1,4 @@
-# [skulljs] [0.9.3] nestjs
+# [skulljs] [0.9.4] nestjs
 
 Nestjs components of skulljs
 

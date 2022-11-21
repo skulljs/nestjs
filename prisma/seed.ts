@@ -8,7 +8,7 @@ async function main() {
     data.push({ id: i, name: faker.animal.cat(), color: faker.color.human(), weight: faker.random.numeric(), eyes_color: faker.color.human() });
   }
 
-  const cats = await prisma.cats.createMany({ data });
+  const cats = await prisma.cats.createMany({ data, skipDuplicates: true });
   console.log({ cats });
 }
 
