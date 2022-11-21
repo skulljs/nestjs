@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.0.0 - Release
+
+- Release of skulljs
+
 ## v0.9.4 - SkipDuplicate
 
 - Add skip duplicate in seed
