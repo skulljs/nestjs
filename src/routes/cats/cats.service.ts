@@ -1,34 +1,32 @@
 import { Injectable } from '@nestjs/common';
 import { MailerService } from '@nestjs-modules/mailer';
+import { PrismaService } from '../../prisma.service';
 import { CreateCatDto } from './dto/create-cat.dto';
 import { UpdateCatDto } from './dto/update-cat.dto';
-import { PrismaClient } from '@prisma/client';
 import * as Utils from '../../utils/utils';
-
-const prisma = new PrismaClient();
 
 @Injectable()
 export class CatsService {
-  constructor(private readonly mailerService: MailerService) {}
+  constructor(private readonly mailerService: MailerService, private readonly prisma: PrismaService) {}
 
   create(createCatDto: CreateCatDto) {
-    return prisma.cats.create({ data: createCatDto });
+    return this.prisma.cats.create({ data: createCatDto });
   }
 
   findAll() {
-    return prisma.cats.findMany();
+    return this.prisma.cats.findMany();
   }
 
   findOne(id: number) {
-    return prisma.cats.findUnique({ where: { id } });
+    return this.prisma.cats.findUnique({ where: { id } });
   }
 
   update(id: number, updateCatDto: UpdateCatDto) {
-    return prisma.cats.update({ where: { id }, data: updateCatDto });
+    return this.prisma.cats.update({ where: { id }, data: updateCatDto });
   }
 
   remove(id: number) {
-    return prisma.cats.delete({ where: { id } });
+    return this.prisma.cats.delete({ where: { id } });
   }
 
   sendMail() {
@@ -52,7 +50,7 @@ export class CatsService {
   }
 
   async printPDFFromClass(id: number): Promise<Buffer> {
-    const cat = await prisma.cats.findUnique({ where: { id } });
+    const cat = await this.prisma.cats.findUnique({ where: { id } });
     const pdf = new Utils.PDFGenerator()
       .createDocument()
       .addNewPageListener()
@@ -68,7 +66,7 @@ export class CatsService {
   }
 
   async printPDFFromEJS(id: number): Promise<Buffer> {
-    const cat = await prisma.cats.findUnique({ where: { id } });
+    const cat = await this.prisma.cats.findUnique({ where: { id } });
     return Utils.EJSToPDF({ template: 'cats', context: { cat } });
   }
 }

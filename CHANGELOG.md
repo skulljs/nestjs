@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.1.0 - Abstraction of prisma client api
+
+- Add prisma.service.ts for abstraction of prisma client api
+
 ## v1.0.0 - Release
 
 - Release of skulljs

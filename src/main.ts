@@ -2,6 +2,7 @@ import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { ConfigService } from '@nestjs/config';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { PrismaService } from './prisma.service';
 import { AppModule } from './app.module';
 import helmet from 'helmet';
 import * as rfs from 'rotating-file-stream';
@@ -12,6 +13,10 @@ import * as path from 'path';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const config = app.get(ConfigService);
+
+  // listener for Prisma beforeExit event
+  const prismaService = app.get(PrismaService);
+  await prismaService.enableShutdownHooks(app);
 
   app.setGlobalPrefix(config.get('apiPrefix'));
 
