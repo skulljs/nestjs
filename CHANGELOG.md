@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.1.1 - Fix Abstraction of prisma client api
+
+- Add prismaService in Cats module
+
+
 ## v1.1.0 - Abstraction of prisma client api
 
 - Add prisma.service.ts for abstraction of prisma client api
