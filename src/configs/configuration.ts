@@ -27,9 +27,6 @@ export const configuration = () => ({
   sessionCookieHttpOnly: false, // Specifies the boolean value for the HttpOnly Set-Cookie attribute.
   sessionCookieSecure: 'auto', // Specifies the boolean value for the Secure Set-Cookie attribute.
 
-  // Check Authenticated
-  checkAuthencicatedKey: 'isAuthenticated', // session key for check auhenticated middleware
-
   // Mailer
   mailerSmtpHost: 'smtp.example.com', // Smtp Host
   mailerSmtpPort: 25, // Smtp Port

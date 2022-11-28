@@ -1,9 +1,14 @@
 # Changelog
 
+## v1.2.0 - Rework access management
+
+- Remove checkAuthenticated middleware
+- Add isAuthorized guard for roles based access management
+- Add session type declaration
+
 ## v1.1.1 - Fix Abstraction of prisma client api
 
 - Add prismaService in Cats module
-
 
 ## v1.1.0 - Abstraction of prisma client api
 

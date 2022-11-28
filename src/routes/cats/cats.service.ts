@@ -17,6 +17,10 @@ export class CatsService {
     return this.prisma.cats.findMany();
   }
 
+  admin() {
+    return { msg: 'Hello Skulljs !' };
+  }
+
   findOne(id: number) {
     return this.prisma.cats.findUnique({ where: { id } });
   }
