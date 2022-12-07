@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.2.1 - Update tests
+
+- Add route unit tests
+
 ## v1.2.0 - Rework access management
 
 - Remove checkAuthenticated middleware

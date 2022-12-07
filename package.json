@@ -1,6 +1,6 @@
 {
   "name": "nestjs",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "",
   "author": "",
   "private": true,
@@ -92,6 +92,9 @@
     "collectCoverageFrom": [
       "**/*.(t|j)s"
     ],
+    "moduleNameMapper": {
+      "^src/(.*)$": "<rootDir>/$1"
+    },
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
   }
