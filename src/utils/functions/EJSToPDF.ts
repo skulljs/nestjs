@@ -10,11 +10,22 @@ interface options {
   margin?: { top: string; right: string; bottom: string; left: string };
 }
 
+let page;
+const getPage = async () => {
+  if (page) return page;
+  const browser = await puppeteer.launch({
+    headless: true,
+    args: [],
+  });
+  page = await browser.newPage();
+  return page;
+};
+
 export default async function (options: options): Promise<Buffer> {
-  const templateFile = path.join(__dirname, `/../../../../templates/pdfs/${options.template}.ejs`);
+  const templateFile = path.join(__dirname, `/../../../templates/pdfs/${options.template}.ejs`);
 
   // setup puppeteer page configs
-  const pdfConfigs: any = {};
+  const pdfConfigs: any = { printBackground: true, preferCSSPageSize: true };
 
   if (options.orientation == 'p' || !options.orientation) {
     pdfConfigs.landscape = false;
@@ -37,24 +48,21 @@ export default async function (options: options): Promise<Buffer> {
   const html = await ejs.renderFile(templateFile, options.context);
 
   // start puppeteer
-  const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] });
-  const page = await browser.newPage();
+  const page = await getPage();
 
   // set html content
   await page.setContent(html, {
-    waitUntil: 'networkidle2',
+    waitUntil: 'domcontentloaded',
   });
 
   // make sure fonts have loaded before screenshot and pdf generation
   await page.evaluateHandle('document.fonts.ready');
-  await page.screenshot();
+
+  // reflect CSS used for screens instead of print
+  await page.emulateMediaType('screen');
 
   // generate PDF with configs
   const buffer = await page.pdf(pdfConfigs);
-
-  // end Puppeteer session.
-  await page.close();
-  await browser.close();
 
   return buffer;
 }

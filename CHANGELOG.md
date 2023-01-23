@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.3.0 - Improve EJSToPDF
+
+- Improve EJSToPDF function
+
 ## v1.2.1 - Update tests
 
 - Add route unit tests
