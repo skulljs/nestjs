@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.4.0 - Rework asyncForEach
+
+- Rework asyncForEach
+
 ## v1.3.0 - Improve EJSToPDF
 
 - Improve EJSToPDF function
