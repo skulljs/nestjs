@@ -1,4 +1,5 @@
-import EJSToPDF from './functions/EJSToPDF';
+import templateToPDF from './functions/templateToPDF';
 import PDFGenerator from './classes/PDFGenerator';
+import * as crypto from './functions/crypto';
 
-export { PDFGenerator, EJSToPDF };
+export { PDFGenerator, templateToPDF, crypto };

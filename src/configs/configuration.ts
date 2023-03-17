@@ -20,7 +20,7 @@ export const configuration = () => ({
   openAPIVersion: '1.0', // version of the open api docs
 
   // Session
-  sessionSecret: 'BVfSn4G9ZStpNxgCe2Pp', // you need to change this
+  sessionSecret: 'changeMeOrInsecure', // ! you need to change this
   sessionCookieMaxAge: 86400000, // value in ms | 1 day
   sessionResave: false, // true = Forces the session to be saved back to the session store, even if the session was never modified during the request.
   sessionSaveUninitialized: false, // true = Forces a session that is "uninitialized" to be saved to the store. A session is uninitialized when it is new but not modified.
@@ -31,4 +31,7 @@ export const configuration = () => ({
   mailerSmtpHost: 'smtp.example.com', // Smtp Host
   mailerSmtpPort: 25, // Smtp Port
   mailerDefaultFrom: '"skulljs" <skulljs@example.com>', // Default from for mails
+
+  // Crypto
+  cryptoSecretKey: 'changeMeOrInsecure'.padEnd(32, '!'), // ! you need to change this, === 32 characters
 });

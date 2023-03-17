@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MailerModule } from '@nestjs-modules/mailer';
-import { EjsAdapter } from '@nestjs-modules/mailer/dist/adapters/ejs.adapter';
+import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter';
 import { configuration } from './configs/configuration';
 import { CatsModule } from './routes/cats/cats.module';
 
@@ -23,8 +23,8 @@ import { CatsModule } from './routes/cats/cats.module';
           from: configService.get('mailerDefaultFrom'),
         },
         template: {
-          dir: __dirname + '/../../templates/mails',
-          adapter: new EjsAdapter(),
+          dir: __dirname + '/../templates/mails',
+          adapter: new HandlebarsAdapter(),
           options: {
             strict: false,
           },

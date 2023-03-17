@@ -68,9 +68,9 @@ export class CatsController {
     res.end(buffer);
   }
 
-  @Get('pdfEJS/:id')
-  async printPDFFromEJS(@Param('id') id: string, @Res() res: Response) {
-    const buffer = await this.catsService.printPDFFromEJS(+id);
+  @Get('pdfTemplate/:id')
+  async printPDFFromTemplate(@Param('id') id: string, @Res() res: Response) {
+    const buffer = await this.catsService.printPDFFromTemplate(+id);
     res.set({
       'Content-Type': 'application/pdf',
       'Content-Disposition': 'attachment; filename=example.pdf',

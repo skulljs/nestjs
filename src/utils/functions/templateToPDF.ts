@@ -1,6 +1,7 @@
 import * as puppeteer from 'puppeteer';
-import * as ejs from 'ejs';
+import * as hds from 'handlebars';
 import * as path from 'path';
+import * as fs from 'fs';
 
 interface options {
   template: string;
@@ -10,7 +11,7 @@ interface options {
   margin?: { top: string; right: string; bottom: string; left: string };
 }
 
-let page;
+let page: puppeteer.Page;
 const getPage = async () => {
   if (page) return page;
   const browser = await puppeteer.launch({
@@ -22,7 +23,7 @@ const getPage = async () => {
 };
 
 export default async function (options: options): Promise<Buffer> {
-  const templateFile = path.join(__dirname, `/../../../templates/pdfs/${options.template}.ejs`);
+  const templateFile = path.join(__dirname, `/../../../templates/pdfs/${options.template}.hbs`);
 
   // setup puppeteer page configs
   const pdfConfigs: any = { printBackground: true, preferCSSPageSize: true };
@@ -44,8 +45,9 @@ export default async function (options: options): Promise<Buffer> {
         left: '15mm',
       };
 
-  // render EJS
-  const html = await ejs.renderFile(templateFile, options.context);
+  // render HDS
+  const template = hds.compile(fs.readFileSync(templateFile, 'utf8'));
+  const html = template(options.context);
 
   // start puppeteer
   const page = await getPage();

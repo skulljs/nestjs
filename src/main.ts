@@ -9,6 +9,7 @@ import * as rfs from 'rotating-file-stream';
 import * as session from 'express-session';
 import * as morgan from 'morgan';
 import * as path from 'path';
+import './utils/prototypes/array';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);

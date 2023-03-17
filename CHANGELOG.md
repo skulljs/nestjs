@@ -1,5 +1,12 @@
 # Changelog
 
+## v1.5.0 - Shuffle + Handlebars + Cryptos
+
+- Add cryptos functions in utils
+- Add shuffle function to array prototype
+- Swap EJS for Handlebars
+- Rename EJSToPDF to templateToPDF
+
 ## v1.4.0 - Rework asyncForEach
 
 - Rework asyncForEach

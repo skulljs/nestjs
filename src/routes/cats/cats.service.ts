@@ -13,8 +13,8 @@ export class CatsService {
     return this.prisma.cats.create({ data: createCatDto });
   }
 
-  findAll() {
-    return this.prisma.cats.findMany();
+  async findAll() {
+    return (await this.prisma.cats.findMany()).shuffle();
   }
 
   admin() {
@@ -69,8 +69,8 @@ export class CatsService {
     return pdf.closeAndGetBytes();
   }
 
-  async printPDFFromEJS(id: number): Promise<Buffer> {
+  async printPDFFromTemplate(id: number): Promise<Buffer> {
     const cat = await this.prisma.cats.findUnique({ where: { id } });
-    return Utils.EJSToPDF({ template: 'cats', context: { cat } });
+    return Utils.templateToPDF({ template: 'cats', context: { cat } });
   }
 }
