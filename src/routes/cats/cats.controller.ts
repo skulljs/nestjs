@@ -27,10 +27,32 @@ export class CatsController {
     return this.catsService.findAll();
   }
 
+  @Get('shuffle')
+  @ApiOkResponse({ type: Cat })
+  findAllShuffle() {
+    return this.catsService.findAllShuffle();
+  }
+
+  @Get('asyncForEach')
+  @ApiOkResponse({ type: Cat })
+  findAllAsyncForEach() {
+    return this.catsService.findAllAsyncForEach();
+  }
+
   @Get('admin')
   @Authorize(Roles.Admin)
   admin() {
     return this.catsService.admin();
+  }
+
+  @Get('crypto')
+  crypto() {
+    return this.catsService.crypto();
+  }
+
+  @Post('sendMail')
+  sendMail() {
+    return this.catsService.sendMail();
   }
 
   @Get(':id')
@@ -49,11 +71,6 @@ export class CatsController {
   @ApiOkResponse({ type: Cat })
   remove(@Param('id') id: string) {
     return this.catsService.remove(+id);
-  }
-
-  @Post('sendMail')
-  sendMail() {
-    return this.catsService.sendMail();
   }
 
   @Get('pdfClass/:id')

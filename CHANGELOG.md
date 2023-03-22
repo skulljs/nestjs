@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.6.0 - Hash + asyncForEach example
+
+- Add hash in crypto function in utils
+- Add asyncForEach + cryptos example in cats route
+
 ## v1.5.0 - Shuffle + Handlebars + Cryptos
 
 - Add cryptos functions in utils

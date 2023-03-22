@@ -13,24 +13,33 @@ export class CatsService {
     return this.prisma.cats.create({ data: createCatDto });
   }
 
-  async findAll() {
+  findAll() {
+    return this.prisma.cats.findMany();
+  }
+
+  async findAllShuffle() {
     return (await this.prisma.cats.findMany()).shuffle();
   }
 
+  async findAllAsyncForEach() {
+    const data = [];
+    const cats = await this.prisma.cats.findMany();
+    await cats.asyncForEach(async (cat) => {
+      const catDb = await this.prisma.cats.findUnique({ where: { id: cat.id } });
+      delete catDb.id;
+      data.push({ id: cat.id, data: catDb });
+    });
+    return data;
+  }
+
   admin() {
-    return { msg: 'Hello Skulljs !' };
+    return { msg: 'Hello Skulljs Admin !' };
   }
 
-  findOne(id: number) {
-    return this.prisma.cats.findUnique({ where: { id } });
-  }
-
-  update(id: number, updateCatDto: UpdateCatDto) {
-    return this.prisma.cats.update({ where: { id }, data: updateCatDto });
-  }
-
-  remove(id: number) {
-    return this.prisma.cats.delete({ where: { id } });
+  async crypto() {
+    const rawData = 'iAmATestString';
+    const encryptedData = Utils.crypto.encrypt(rawData);
+    return { rawData: Utils.crypto.decrypt(encryptedData), encryptedData: encryptedData, hash: await Utils.crypto.hash(rawData) };
   }
 
   sendMail() {
@@ -51,6 +60,18 @@ export class CatsService {
       .catch((err) => {
         console.log(err);
       });
+  }
+
+  findOne(id: number) {
+    return this.prisma.cats.findUnique({ where: { id } });
+  }
+
+  update(id: number, updateCatDto: UpdateCatDto) {
+    return this.prisma.cats.update({ where: { id }, data: updateCatDto });
+  }
+
+  remove(id: number) {
+    return this.prisma.cats.delete({ where: { id } });
   }
 
   async printPDFFromClass(id: number): Promise<Buffer> {

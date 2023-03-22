@@ -34,4 +34,5 @@ export const configuration = () => ({
 
   // Crypto
   cryptoSecretKey: 'changeMeOrInsecure'.padEnd(32, '!'), // ! you need to change this, === 32 characters
+  cryptoHashSaltString: 'changeMeOrInsecure', // ! you need to change this
 });
