@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.7.0 - Production variable in config
+
+- Add production variable in config
+
 ## v1.6.0 - Hash + asyncForEach example
 
 - Add hash in crypto function in utils

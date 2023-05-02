@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { MailerService } from '@nestjs-modules/mailer';
+import { ConfigService } from '@nestjs/config';
 import { PrismaService } from '../../prisma.service';
 import { CreateCatDto } from './dto/create-cat.dto';
 import { UpdateCatDto } from './dto/update-cat.dto';
@@ -7,7 +8,7 @@ import * as Utils from '../../utils/utils';
 
 @Injectable()
 export class CatsService {
-  constructor(private readonly mailerService: MailerService, private readonly prisma: PrismaService) {}
+  constructor(private readonly mailerService: MailerService, private readonly prisma: PrismaService, private readonly configService: ConfigService) {}
 
   create(createCatDto: CreateCatDto) {
     return this.prisma.cats.create({ data: createCatDto });
@@ -33,7 +34,7 @@ export class CatsService {
   }
 
   admin() {
-    return { msg: 'Hello Skulljs Admin !' };
+    return { msg: 'Hello Skulljs Admin !', production: this.configService.get('production') };
   }
 
   async crypto() {

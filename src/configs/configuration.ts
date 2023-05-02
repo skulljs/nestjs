@@ -1,5 +1,6 @@
 export const configuration = () => ({
   // Api
+  production: false,
   apiPrefix: 'api', // general prefix for nestjs routes
   port: 3000, // nestjs port
 
