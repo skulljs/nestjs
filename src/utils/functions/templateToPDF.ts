@@ -15,7 +15,7 @@ let page: puppeteer.Page;
 const getPage = async () => {
   if (page) return page;
   const browser = await puppeteer.launch({
-    headless: true,
+    headless: 'new',
     args: ['--no-sandbox'],
   });
   page = await browser.newPage();
