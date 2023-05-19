@@ -46,7 +46,7 @@
     "pdfkit": "^0.13.0",
     "puppeteer": "^20.2.1",
     "reflect-metadata": "^0.1.13",
-    "rimraf": "^5.0.0",
+    "rimraf": "^5.0.1",
     "rotating-file-stream": "^3.1.0",
     "rxjs": "^7.8.1"
   },
