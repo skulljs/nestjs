@@ -19,28 +19,25 @@ export class IsAuthorizedGuard implements CanActivate {
 
   validateRequest(session: SessionExpress, roles: Roles[], options: AuthorizeOptions) {
     // ? Public
-    if (!roles) {
-      return true;
-    } else if (!session.user) {
-      return false;
-    } else {
-      let isAuthorized = false;
-      if (options.minimunRoleMode) {
-        // ? Minimun Role Mode == check if the user have the listed role or a superior one
-        if (roles.length != 1) {
-          throw new HttpException("[IsAuthorizedGuard] Can't declare more than one role is minimunRoleMode ", HttpStatus.INTERNAL_SERVER_ERROR);
-        } else {
-          isAuthorized = session.user.role >= roles[0];
-        }
+    if (!roles) return true;
+    if (!session.user) return false;
+
+    let isAuthorized = false;
+    if (options.minimunRoleMode) {
+      // ? Minimun Role Mode == check if the user have the listed role or a superior one
+      if (roles.length != 1) {
+        throw new HttpException("[IsAuthorizedGuard] Can't declare more than one role in minimunRoleMode ", HttpStatus.INTERNAL_SERVER_ERROR);
       } else {
-        // ? List Role Mode == check if the user have one of the listed roles
-        roles.forEach((role) => {
-          if (!isAuthorized) {
-            isAuthorized = session.user.role == role;
-          }
-        });
+        isAuthorized = session.user.role >= roles[0];
       }
-      return isAuthorized;
+    } else {
+      // ? List Role Mode == check if the user have one of the listed roles
+      roles.forEach((role) => {
+        if (!isAuthorized) {
+          isAuthorized = session.user.role == role;
+        }
+      });
     }
+    return isAuthorized;
   }
 }

@@ -1,9 +1,9 @@
 # Changelog
 
-## v1.8.0 - Rework authorization + sendMail utils for mail diversion in dev env
+## v1.8.0 - Rework authorization + sendMail utils for mail redirection in dev env
 
 - Rework authorization system
-- Add sendMail utils for mail diversion in dev env
+- Add sendMail utils for mail redirection in dev env
 
 ## v1.7.0 - Production variable in config
 
