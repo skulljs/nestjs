@@ -30,11 +30,7 @@ export class IsAuthorizedGuard implements CanActivate {
       isAuthorized = session.user.role >= roles[0];
     } else {
       // ? List Role Mode == check if the user have one of the listed roles
-      roles.forEach((role) => {
-        if (!isAuthorized) {
-          isAuthorized = session.user.role == role;
-        }
-      });
+      isAuthorized = roles.some((role) => session.user.role == role);
     }
     return isAuthorized;
   }
