@@ -1,8 +1,8 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Res, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Res, Session } from '@nestjs/common';
+import { Session as SessionExpress } from 'express-session';
 import { ApiTags, ApiOkResponse } from '@nestjs/swagger';
 import { Response } from 'express';
 import { Authorize } from 'src/decorators/authorize.decorator';
-import { IsAuthorizedGuard } from 'src/guards/is-authorized/is-authorized.guard';
 import { Roles } from 'src/guards/is-authorized/roles';
 import { CatsService } from './cats.service';
 import { CreateCatDto } from './dto/create-cat.dto';
@@ -11,7 +11,6 @@ import { Cat } from './entities/cat.entity';
 
 @ApiTags('cats')
 @Controller('cats')
-@UseGuards(IsAuthorizedGuard)
 export class CatsController {
   constructor(private readonly catsService: CatsService) {}
 
@@ -19,6 +18,12 @@ export class CatsController {
   @ApiOkResponse({ type: Cat })
   create(@Body() createCatDto: CreateCatDto) {
     return this.catsService.create(createCatDto);
+  }
+
+  @Post('login')
+  @ApiOkResponse()
+  login(@Session() session: SessionExpress) {
+    return this.catsService.login(session);
   }
 
   @Get()
@@ -40,7 +45,7 @@ export class CatsController {
   }
 
   @Get('admin')
-  @Authorize(Roles.Admin)
+  @Authorize([Roles.Admin])
   admin() {
     return this.catsService.admin();
   }

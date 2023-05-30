@@ -1,7 +1,8 @@
-import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
+import { CanActivate, ExecutionContext, Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { Session as SessionExpress } from 'express-session';
 import { Observable } from 'rxjs';
+import { AuthorizeOptions } from 'src/decorators/authorize.decorator';
 import { Roles } from 'src/guards/is-authorized/roles';
 
 @Injectable()
@@ -11,25 +12,35 @@ export class IsAuthorizedGuard implements CanActivate {
   canActivate(context: ExecutionContext): boolean | Promise<boolean> | Observable<boolean> {
     const request = context.switchToHttp().getRequest();
     const session = request.session as SessionExpress;
-    const authorize = this.reflector.get<Roles[]>('authorize', context.getHandler());
-    return this.validateRequest(session, authorize);
+    const roles = this.reflector.get<Roles[]>('roles', context.getHandler());
+    const options = this.reflector.get<AuthorizeOptions>('options', context.getHandler());
+    return this.validateRequest(session, roles, options);
   }
 
-  validateRequest(session: SessionExpress, authorize: Roles[]) {
-    // Public
-    if (!authorize) {
+  validateRequest(session: SessionExpress, roles: Roles[], options: AuthorizeOptions) {
+    // ? Public
+    if (!roles) {
       return true;
+    } else if (!session.user) {
+      return false;
+    } else {
+      let isAuthorized = false;
+      if (options.minimunRoleMode) {
+        // ? Minimun Role Mode == check if the user have the listed role or a superior one
+        if (roles.length != 1) {
+          throw new HttpException("[IsAuthorizedGuard] Can't declare more than one role is minimunRoleMode ", HttpStatus.INTERNAL_SERVER_ERROR);
+        } else {
+          isAuthorized = session.user.role >= roles[0];
+        }
+      } else {
+        // ? List Role Mode == check if the user have one of the listed roles
+        roles.forEach((role) => {
+          if (!isAuthorized) {
+            isAuthorized = session.user.role == role;
+          }
+        });
+      }
+      return isAuthorized;
     }
-
-    let isAuthorized = false;
-    if (session.user && authorize.includes(Roles.LoggedUser)) {
-      isAuthorized = session.user.isLogged;
-    }
-
-    if (session.user && authorize.includes(Roles.Admin)) {
-      isAuthorized = session.user.isAdmin;
-    }
-
-    return isAuthorized;
   }
 }

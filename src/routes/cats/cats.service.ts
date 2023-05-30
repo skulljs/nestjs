@@ -1,4 +1,6 @@
 import { Injectable } from '@nestjs/common';
+import { Session as SessionExpress } from 'express-session';
+import { Roles } from 'src/guards/is-authorized/roles';
 import { MailerService } from '@nestjs-modules/mailer';
 import { ConfigService } from '@nestjs/config';
 import { PrismaService } from '../../prisma.service';
@@ -12,6 +14,11 @@ export class CatsService {
 
   create(createCatDto: CreateCatDto) {
     return this.prisma.cats.create({ data: createCatDto });
+  }
+
+  login(session: SessionExpress) {
+    session.user = { isLogged: true, role: Roles.Admin };
+    return session.user;
   }
 
   findAll() {
@@ -44,23 +51,15 @@ export class CatsService {
   }
 
   sendMail() {
-    this.mailerService
-      .sendMail({
-        to: 'user.name@example.com', // list of receivers
-        from: 'noreply@skulljs.com', // sender address
-        subject: '[skulljs] The cats have been created ✔', // Subject line
-        template: 'cats',
-        context: {
-          // Data to be sent to template engine.
-          name: 'john doe',
-        },
-      })
-      .then((success) => {
-        console.log(success);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    Utils.sendMail(this.mailerService, {
+      to: 'user.name@example.com', // list of receivers
+      subject: '[skulljs] The cats have been created ✔', // Subject line
+      template: 'cats',
+      context: {
+        // Data to be sent to template engine.
+        name: 'john doe',
+      },
+    });
   }
 
   findOne(id: number) {

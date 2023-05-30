@@ -32,6 +32,7 @@ export const configuration = () => ({
   mailerSmtpHost: 'smtp.example.com', // Smtp Host
   mailerSmtpPort: 25, // Smtp Port
   mailerDefaultFrom: '"skulljs" <skulljs@example.com>', // Default from for mails
+  mailerDiversionEmail: 'diversion@example.com', // Email address for mail diversion in dev env
 
   // Crypto
   cryptoSecretKey: 'changeMeOrInsecure'.padEnd(32, '!'), // ! you need to change this, === 32 characters
