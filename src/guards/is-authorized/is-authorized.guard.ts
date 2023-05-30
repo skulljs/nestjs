@@ -25,11 +25,9 @@ export class IsAuthorizedGuard implements CanActivate {
     let isAuthorized = false;
     if (options.minimunRoleMode) {
       // ? Minimun Role Mode == check if the user have the listed role or a superior one
-      if (roles.length != 1) {
+      if (roles.length != 1)
         throw new HttpException("[IsAuthorizedGuard] Can't declare more than one role in minimunRoleMode ", HttpStatus.INTERNAL_SERVER_ERROR);
-      } else {
-        isAuthorized = session.user.role >= roles[0];
-      }
+      isAuthorized = session.user.role >= roles[0];
     } else {
       // ? List Role Mode == check if the user have one of the listed roles
       roles.forEach((role) => {
