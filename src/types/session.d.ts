@@ -5,7 +5,7 @@ declare module 'express-session' {
   interface Session {
     user?: {
       isLogged: boolean;
-      role?: Roles;
+      role: Roles;
 
       // Declare here your session data
     };
