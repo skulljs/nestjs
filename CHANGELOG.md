@@ -1,5 +1,9 @@
 # Changelog
 
+## v9.0.0 - Sync NestJs Version
+
+- Sync NestJs Version
+
 ## v1.8.0 - Rework authorization + sendMail utils for mail redirection in dev env
 
 - Rework authorization system
