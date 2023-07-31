@@ -1,5 +1,9 @@
 # Changelog
 
+## v10.0.0 - Sync NestJs Version
+
+- Sync NestJs Version
+
 ## v9.0.0 - Sync NestJs Version
 
 - Sync NestJs Version

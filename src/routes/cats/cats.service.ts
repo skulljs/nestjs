@@ -10,7 +10,11 @@ import * as Utils from '../../utils/utils';
 
 @Injectable()
 export class CatsService {
-  constructor(private readonly mailerService: MailerService, private readonly prisma: PrismaService, private readonly configService: ConfigService) {}
+  constructor(
+    private readonly mailerService: MailerService,
+    private readonly prisma: PrismaService,
+    private readonly configService: ConfigService
+  ) {}
 
   create(createCatDto: CreateCatDto) {
     return this.prisma.cats.create({ data: createCatDto });
