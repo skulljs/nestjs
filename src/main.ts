@@ -39,13 +39,15 @@ async function bootstrap() {
   });
 
   // OpenAPI
-  const openAPIConfig = new DocumentBuilder()
-    .setTitle(config.get('openAPITitle'))
-    .setDescription(config.get('openAPIDescription'))
-    .setVersion(config.get('openAPIVersion'))
-    .build();
-  const document = SwaggerModule.createDocument(app, openAPIConfig);
-  SwaggerModule.setup(config.get('openAPIPath'), app, document);
+  if (!config.get('production')) {
+    const openAPIConfig = new DocumentBuilder()
+      .setTitle(config.get('openAPITitle'))
+      .setDescription(config.get('openAPIDescription'))
+      .setVersion(config.get('openAPIVersion'))
+      .build();
+    const document = SwaggerModule.createDocument(app, openAPIConfig);
+    SwaggerModule.setup(config.get('openAPIPath'), app, document);
+  }
 
   // Session
   app.use(
