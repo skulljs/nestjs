@@ -66,6 +66,6 @@ async function bootstrap() {
   // Start server
   await app.listen(config.get('port'));
   Logger.log(`🚀 Application is running on: http://localhost:${config.get('port')}/${config.get('apiPrefix')}`);
-  Logger.log(`📚 OpenAPI documentation is running on: http://localhost:${config.get('port')}/${config.get('openAPIPath')}`);
+  if (!config.get('production')) Logger.log(`📚 OpenAPI documentation is running on: http://localhost:${config.get('port')}/${config.get('openAPIPath')}`);
 }
 bootstrap();
