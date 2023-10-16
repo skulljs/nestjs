@@ -26,6 +26,11 @@
     "compodoc:build-and-serve": "compodoc -p tsconfig.doc.json -s",
     "compodoc:serve": "compodoc -s"
   },
+  "overrides": {
+    "@nestjs-modules/mailer": {
+      "degenerator": "5.0.1"
+    }
+  },
   "dependencies": {
     "@faker-js/faker": "^8.1.0",
     "@nestjs-modules/mailer": "^1.9.1",
