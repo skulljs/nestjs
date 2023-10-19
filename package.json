@@ -57,7 +57,7 @@
     "rxjs": "^7.8.1"
   },
   "devDependencies": {
-    "@compodoc/compodoc": "^1.1.21",
+    "@compodoc/compodoc": "^1.1.22",
     "@nestjs/cli": "^10.1.18",
     "@nestjs/schematics": "^10.0.2",
     "@nestjs/testing": "^10.2.7",
