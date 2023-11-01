@@ -65,7 +65,7 @@
     "@types/express-session": "^1.17.9",
     "@types/jest": "29.5.7",
     "@types/morgan": "^1.9.7",
-    "@types/node": "^20.8.9",
+    "@types/node": "^20.8.10",
     "@types/pdfkit": "^0.13.1",
     "@types/supertest": "^2.0.15",
     "@typescript-eslint/eslint-plugin": "^6.9.1",
