@@ -66,5 +66,5 @@ export default async function (options: options): Promise<Buffer> {
   // generate PDF with configs
   const buffer = await page.pdf(pdfConfigs);
 
-  return buffer;
+  return Buffer.from(buffer);
 }
