@@ -1,5 +1,9 @@
 # Changelog
 
+## v10.1.0 - New Default DB Provider
+
+- Configured Postgresql as the new default db provider
+
 ## v10.0.0 - Sync NestJs Version
 
 - Sync NestJs Version
