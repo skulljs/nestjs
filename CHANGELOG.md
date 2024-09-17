@@ -1,5 +1,9 @@
 # Changelog
 
+## v10.1.1 - Changed ts-node to tsx
+
+- Changed ts-node to tsx for prisma seed
+
 ## v10.1.0 - New Default DB Provider
 
 - Configured Postgresql as the new default db provider

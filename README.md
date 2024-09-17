@@ -1,4 +1,4 @@
-# [skulljs] [10.1.0] nestjs
+# [skulljs] [10.1.1] nestjs
 
 [![Depfu](https://badges.depfu.com/badges/f3dca6ab19ffec113c65a03b65290a21/status.svg)](https://depfu.com) [![Depfu](https://badges.depfu.com/badges/f3dca6ab19ffec113c65a03b65290a21/overview.svg)](https://depfu.com/github/skulljs/nestjs?project_id=37109) [![Depfu](https://badges.depfu.com/badges/f3dca6ab19ffec113c65a03b65290a21/count.svg)](https://depfu.com/github/skulljs/nestjs?project_id=37109)
 

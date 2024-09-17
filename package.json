@@ -1,12 +1,12 @@
 {
   "name": "nestjs",
-  "version": "10.1.0",
+  "version": "10.1.1",
   "description": "",
   "author": "",
   "private": true,
   "license": "MIT",
   "prisma": {
-    "seed": "ts-node prisma/seed.ts"
+    "seed": "tsx prisma/seed.ts"
   },
   "scripts": {
     "prebuild": "rimraf dist",
@@ -55,7 +55,8 @@
     "reflect-metadata": "^0.2.2",
     "rimraf": "^6.0.1",
     "rotating-file-stream": "^3.2.4",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.1",
+    "tsx": "^4.19.1"
   },
   "devDependencies": {
     "@compodoc/compodoc": "^1.1.25",
