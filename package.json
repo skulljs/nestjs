@@ -59,7 +59,7 @@
     "tsx": "^4.19.1"
   },
   "devDependencies": {
-    "@compodoc/compodoc": "^1.1.25",
+    "@compodoc/compodoc": "^1.1.26",
     "@nestjs/cli": "^10.4.5",
     "@nestjs/schematics": "^10.1.4",
     "@nestjs/testing": "^10.4.4",
