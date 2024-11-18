@@ -1,5 +1,9 @@
 # Changelog
 
+## v10.2.0 - Fix PostgreSQL primary key autoincrement
+
+- Fix PostgreSQL primary key autoincrement
+
 ## v10.1.1 - Changed ts-node to tsx
 
 - Changed ts-node to tsx for prisma seed

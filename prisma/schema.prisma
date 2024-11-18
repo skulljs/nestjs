@@ -8,7 +8,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Cats {
+model cats {
   id         Int    @id @default(autoincrement())
   name       String
   color      String
