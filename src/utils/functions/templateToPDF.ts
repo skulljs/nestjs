@@ -1,7 +1,7 @@
-import * as puppeteer from 'puppeteer';
+import * as fs from 'fs';
 import * as hds from 'handlebars';
 import * as path from 'path';
-import * as fs from 'fs';
+import * as puppeteer from 'puppeteer';
 
 interface options {
   template: string;
@@ -15,8 +15,16 @@ let page: puppeteer.Page;
 const getPage = async () => {
   if (page) return page;
   const browser = await puppeteer.launch({
-    headless: true,
-    args: ['--no-sandbox'],
+    headless: 'shell',
+    args: [
+      '--no-sandbox',
+      '--disable-setuid-sandbox',
+      '--disable-dev-shm-usage',
+      '--disable-web-security', // disabling CORS
+      '--disable-site-isolation-trials',
+      '--disable-notifications',
+      '--no-zygote', // Seems to help avoid zombies https://github.com/puppeteer/puppeteer/issues/1825
+    ],
   });
   page = await browser.newPage();
   return page;

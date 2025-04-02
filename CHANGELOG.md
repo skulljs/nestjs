@@ -1,5 +1,9 @@
 # Changelog
 
+## v11.0.0 - Sync NestJs Version
+
+- Sync NestJs Version
+
 ## v10.2.0 - Fix PostgreSQL primary key autoincrement
 
 - Fix PostgreSQL primary key autoincrement
