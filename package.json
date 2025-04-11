@@ -62,7 +62,7 @@
     "@compodoc/compodoc": "^1.1.26",
     "@nestjs/cli": "^11.0.6",
     "@nestjs/schematics": "^11.0.3",
-    "@nestjs/testing": "^11.0.12",
+    "@nestjs/testing": "^11.0.15",
     "@types/express": "^5.0.1",
     "@types/express-session": "^1.18.1",
     "@types/jest": "29.5.14",
