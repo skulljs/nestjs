@@ -1,5 +1,9 @@
 # Changelog
 
+## v11.1.0 - Prepare Prisma 7
+
+- Add prisma.config.ts to prepare prisma 7
+
 ## v11.0.0 - Sync NestJs Version
 
 - Sync NestJs Version
