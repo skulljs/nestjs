@@ -20,6 +20,13 @@ export const configuration = () => ({
   openAPIDescription: 'nestjs component for skulljs', // description of the open api docs
   openAPIVersion: '1.0', // version of the open api docs
 
+  // Health Check
+  healthCheckStorageWindowsPath: 'C:\\', // path for disk health indicator on windows
+  healthCheckStorageLinuxPath: '/', // path for disk health indicator on linux
+  healthCheckStorageThresholdPercent: 0.7, // threshold percent for disk health indicator
+  healthCheckMemoryHeapThreshold: 0.7, // threshold for memory heap health indicator
+  healthCheckMemoryRssThreshold: 2048 * 1024 * 1024, // threshold for memory RSS health indicator
+
   // Session
   sessionSecret: 'changeMeOrInsecure', // ! you need to change this
   sessionCookieMaxAge: 86400000, // value in ms | 1 day

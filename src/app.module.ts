@@ -1,12 +1,14 @@
-import { Module } from '@nestjs/common';
-import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MailerModule } from '@nestjs-modules/mailer';
 import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter';
+import { Module } from '@nestjs/common';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { configuration } from './configs/configuration';
 import { CatsModule } from './routes/cats/cats.module';
+import { HealthModule } from './routes/health/health.module';
 
 @Module({
   imports: [
+    HealthModule,
     CatsModule,
     ConfigModule.forRoot({ load: [configuration], ignoreEnvFile: true, isGlobal: true }),
     MailerModule.forRootAsync({

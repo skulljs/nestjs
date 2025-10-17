@@ -1,13 +1,13 @@
 import { Logger } from '@nestjs/common';
-import { NestFactory } from '@nestjs/core';
 import { ConfigService } from '@nestjs/config';
+import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { AppModule } from './app.module';
+import session from 'express-session';
 import helmet from 'helmet';
-import * as rfs from 'rotating-file-stream';
-import * as session from 'express-session';
-import * as morgan from 'morgan';
+import morgan from 'morgan';
 import * as path from 'path';
+import * as rfs from 'rotating-file-stream';
+import { AppModule } from './app.module';
 import './utils/prototypes/array';
 
 async function bootstrap() {
@@ -62,6 +62,8 @@ async function bootstrap() {
       },
     })
   );
+
+  app.enableShutdownHooks();
 
   // Start server
   await app.listen(config.get('port'));

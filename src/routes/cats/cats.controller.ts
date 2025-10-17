@@ -1,7 +1,7 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Res, Session } from '@nestjs/common';
-import { Session as SessionExpress } from 'express-session';
-import { ApiTags, ApiOkResponse } from '@nestjs/swagger';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Res, Session } from '@nestjs/common';
+import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { Response } from 'express';
+import { Session as SessionExpress } from 'express-session';
 import { Authorize } from 'src/decorators/authorize.decorator';
 import { Roles } from 'src/guards/is-authorized/roles';
 import { CatsService } from './cats.service';

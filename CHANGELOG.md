@@ -1,5 +1,10 @@
 # Changelog
 
+## v11.2.0 - Add SWC, Health Route
+
+- Add Health Route
+- Add SWC
+
 ## v11.1.0 - Prepare Prisma 7
 
 - Add prisma.config.ts to prepare prisma 7
