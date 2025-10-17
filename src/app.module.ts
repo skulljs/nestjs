@@ -25,7 +25,7 @@ import { HealthModule } from './routes/health/health.module';
           from: configService.get('mailerDefaultFrom'),
         },
         template: {
-          dir: __dirname + '/../templates/mails',
+          dir: __dirname + '/templates/mails',
           adapter: new HandlebarsAdapter(),
           options: {
             strict: false,

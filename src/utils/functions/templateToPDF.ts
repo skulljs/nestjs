@@ -31,7 +31,7 @@ const getPage = async () => {
 };
 
 export default async function (options: options): Promise<Buffer> {
-  const templateFile = path.join(__dirname, `/../../../templates/pdfs/${options.template}.hbs`);
+  const templateFile = path.join(__dirname, `/../../templates/pdfs/${options.template}.hbs`);
 
   // setup puppeteer page configs
   const pdfConfigs: any = { printBackground: true, preferCSSPageSize: true };
