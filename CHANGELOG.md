@@ -1,5 +1,9 @@
 # Changelog
 
+## v11.3.0 - Migrate to Prisma 7
+
+- Migrate to prisma 7
+
 ## v11.2.0 - Add SWC, Health Route
 
 - Add Health Route

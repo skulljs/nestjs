@@ -1,6 +1,18 @@
+import 'dotenv/config';
 import { faker } from '@faker-js/faker';
-import { cats, PrismaClient } from '@prisma/client';
-const prisma = new PrismaClient();
+import { cats, PrismaClient } from '../src/generated/prisma/client';
+import { PrismaPg } from '@prisma/adapter-pg';
+
+const connectionString = process.env.DATABASE_URL;
+const schema = new URL(connectionString).searchParams.get('schema') ?? undefined;
+const adapter = new PrismaPg(
+  {
+    connectionString: connectionString,
+    options: schema && `-c search_path="${schema}"`,
+  },
+  { schema }
+);
+const prisma = new PrismaClient({ adapter });
 
 async function main() {
   const data: cats[] = [];
